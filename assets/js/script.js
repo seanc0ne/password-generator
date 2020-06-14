@@ -26,25 +26,25 @@ const randomFunc = {
 function generatePassword(lower, upper, number, symbol, length) {
 
   let generatedPassword = '';
-
-
-  // Loop through some count of characters from i = 0 to i < length.
-  
   for (let i = 0; i < length; i++) {
-    // For each time we loop, we want to pick a random char based on whether
-    // we are allowing lower, upper, numbers, or symbols.
-
-    // Start with empty.
     listOfPossibleChars = [];
+    if (lower) {
+      listOfPossibleChars.push(getRandomLower())
+    }
+    if (upper) {
+      listOfPossibleChars.push(getRandomUpper())
+    }
+    if (number) {
+      listOfPossibleChars.push(getRandomNumber())
+    }
+    if (symbol) {
+      listOfPossibleChars.push(getRandomSymbol())
+    }
 
-
-
-    // Randomize the list.
     var randomListOfPossibleChars = listOfPossibleChars.sort(function () {
       return Math.random - 0.5;
     });
 
-    // Pick one from the list.
     var randomChar = randomListOfPossibleChars.pop();
 
     generatedPassword = generatedPassword + randomChar;
@@ -92,10 +92,3 @@ function writePassword() {
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-// generateEl.addEventListener('click', function () {
-//   var length = window.prompt("Enter a number from 8 to 128 for password length.");
-//   var lowercase = window.confirm("Would you like to use lowercase letters?");
-//   var uppercase = window.confirm("Would you like to use uppercase letters?");
-//   var symbols = window.confirm("Would you like to use symbols?");
-//   var numbers = window.confirm("Would you like to use numbers?");
